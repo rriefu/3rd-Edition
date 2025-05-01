@@ -4,36 +4,73 @@ setwd("C:\\Users\\yang.OFFICE365\\Documents\\GitHub\\3rd-Edition\\Data for Revie
 list.files()
 
 
-#######   
+#######   exercise week 2 #######  
 
-df=read_dta("ldl.dta")
+df=read_dta("lipid.dta")
 names(df)
 
-hist(df$ldl_corn)
-hist(df$ldl_oat)
+# all samples
+## Histogram
+hist(df$total_cholesterol,
+     main = "Histogram of Total Cholesterol",
+     xlab = "Total Cholesterol (mg/dL)")
 
-sample=df[sample(nrow(df), size = 50, replace= TRUE)]
-
-hist(sample$total_cholesterol)
-hist(sample$ldl_oat)
-
-shapiro.test(df$sc_fat)
-shapiro.test(df$total_cholesterol)
-
-qqnorm(sample$total_cholesterol)
-qqline(sample$total_cholesterol)
-
-qqnorm(sample$sc_fat)
-qqline(sample$sc_fat)
-
-shapiro.test(sample$sc_fat)
-shapiro.test(sample$total_cholesterol)
-
-install.packages("nortest")
-library(nortest)
-lillie.test(sample$sc_fat)
-lillie.test(sample$total_cholesterol)
+## Density plot
+plot(density(df$total_cholesterol),
+     main = "Density Plot of Total Cholesterol",
+     xlab = "Total Cholesterol (mg/dL)")
 
 
-# Sample 10% of rows
-sampled_data <- your_data %>% slice_sample(prop = 0.1)
+## Boxplot
+boxplot(df$total_cholesterol,
+        main = "Total Cholesterol (n = 25)",
+        ylab = "Total Cholesterol (mg/dL)")
+
+## summary stats
+mean(sample_25$total_cholesterol, na.rm = TRUE)
+sd(sample_25$total_cholesterol, na.rm = TRUE)
+
+
+# 25 samples
+set.seed(1)
+sample_25 <- df[sample(nrow(df), 25), ]
+
+## Summary stats
+mean(sample_25$total_cholesterol, na.rm = TRUE)
+sd(sample_25$total_cholesterol, na.rm = TRUE)
+
+## Histogram
+hist(sample_25$total_cholesterol,
+     main = "Histogram of Total Cholesterol",
+     xlab = "Total Cholesterol (mg/dL)")
+
+
+
+# 100 samples
+set.seed(1)
+sample_100 <- df[sample(nrow(df), 100), ]
+
+## Summary stats
+mean(sample_100$total_cholesterol, na.rm = TRUE)
+sd(sample_100$total_cholesterol, na.rm = TRUE)
+
+## Histogram
+hist(sample_100$total_cholesterol,
+     main = "Histogram of Total Cholesterol",
+     xlab = "Total Cholesterol (mg/dL)")
+
+
+
+
+# 1000 samples
+set.seed(1)
+sample_1000 <- df[sample(nrow(df), 1000), ]
+
+## Summary stats
+mean(sample_1000$total_cholesterol, na.rm = TRUE)
+sd(sample_1000$total_cholesterol, na.rm = TRUE)
+
+## Histogram
+hist(sample_1000$total_cholesterol,
+     main = "Histogram of Total Cholesterol",
+     xlab = "Total Cholesterol (mg/dL)")
